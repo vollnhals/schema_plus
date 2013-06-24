@@ -122,7 +122,8 @@ module SchemaPlus
             dump << " #{index.columns.inspect}, :name => #{index.name.inspect}"
             dump << ", :unique => true" if index.unique
             dump << ", :kind => \"#{index.kind}\"" unless index.kind.blank?
-            dump << ", :case_sensitive => false" unless index.case_sensitive?
+            dump << ", :expression => #{index.expression.inspect}"
+#            dump << ", :case_sensitive => false" unless index.case_sensitive?
             dump << ", :conditions => #{index.conditions.inspect}" unless index.conditions.blank?
             index_lengths = index.lengths.compact if index.lengths.is_a?(Array)
             dump << ", :length => #{Hash[*index.columns.zip(index.lengths).flatten].inspect}" if index_lengths.present?
